@@ -11,7 +11,7 @@ test('verifying handling of multiple pages', async ({browser})=>{
     const [facebookPage] = await Promise.all(
         [
             context.waitForEvent('page'),
-            page.locator("//a[contains(@href,'facebook')]").first().click()
+            await page.locator("//a[contains(@href,'facebook')]").first().click()
         ]
     )
     await facebookPage.waitForLoadState("domcontentloaded")
@@ -20,7 +20,7 @@ test('verifying handling of multiple pages', async ({browser})=>{
     const [accountCreationPage] = await Promise.all(
         [
             context.waitForEvent('page'),
-            facebookPage.getByRole('button', { name: 'Create new account' }).click()
+            await facebookPage.getByRole('button', { name: 'Create new account' }).click()
         ]
     ) 
     await accountCreationPage.waitForLoadState("domcontentloaded")
