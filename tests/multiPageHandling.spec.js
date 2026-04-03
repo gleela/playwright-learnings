@@ -1,4 +1,5 @@
-const {test,expect} = require('@playwright/test');
+const {test,expect} = require('@playwright/test')
+const consentHandler = require('../utils/consentHandler')
 
 test('verifying handling of multiple pages', async ({browser})=>{
 
@@ -13,16 +14,17 @@ test('verifying handling of multiple pages', async ({browser})=>{
             page.locator("//a[contains(@href,'facebook')]").first().click()
         ]
     )
-
-    await facebookPage.getByRole('button', { name: 'Decline optional cookies' }).click()
+    await facebookPage.waitForLoadState("domcontentloaded")
+    await consentHandler.handle(facebookPage)
     
     const [accountCreationPage] = await Promise.all(
         [
             context.waitForEvent('page'),
-            await facebookPage.getByRole('button', { name: 'Create new account' }).click()
+            facebookPage.getByRole('button', { name: 'Create new account' }).click()
         ]
     ) 
-    await accountCreationPage.getByRole('button', { name: 'Decline optional cookies' }).click()
+    await accountCreationPage.waitForLoadState("domcontentloaded")
+    await consentHandler.handle(accountCreationPage)
     
     await accountCreationPage.getByLabel("First name").fill("check")
     await accountCreationPage.close()

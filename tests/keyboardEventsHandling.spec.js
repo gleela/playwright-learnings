@@ -1,16 +1,16 @@
 const {test} = require('@playwright/test')
-
+const consentHandler = require('../utils/consentHandler')
 
 test('verifying search using keyboard action',async({page})=>{
     await page.goto("https://www.google.com/")
-    await page.getByRole('button', { name: 'Reject all' }).click()
+    await consentHandler.handle(page)
     await page.getByTitle("Search").fill('Suresh car travels vijayawada')
     await page.keyboard.press('Enter')
 })
 
 test('verifying backspace on a word', async({page})=>{
     await page.goto("https://www.google.com/")
-    await page.getByRole('button', { name: 'Reject all' }).click()
+    await consentHandler.handle(page)
     await page.getByTitle("Search").focus()
     await page.keyboard.type('Suresh car travels!')
     await page.keyboard.press("ArrowLeft")

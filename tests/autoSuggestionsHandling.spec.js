@@ -1,8 +1,10 @@
 const {test,expect} = require('@playwright/test')
+const consentHandler = require('../utils/consentHandler')
 
 test("verifying search with auto suggestion selections",async({page})=>{
     await page.goto("https://www.google.com/")
-    await page.getByRole('button', { name: 'Reject all' }).click()
+
+    await consentHandler.handle(page)
     await page.getByTitle("Search").fill('Suresh car travels vij')
     await page.locator("//li[@role='presentation']").getByText('vijayawada', { exact: true }).click()
 
