@@ -45,7 +45,7 @@ export default defineConfig({
        // viewport:{width:1470,height:831} ,
        screenshot: 'only-on-failure',
        video: 'off',
-       trace: 'off',
+       trace: 'on',
       },
       
     },
