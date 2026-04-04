@@ -28,7 +28,7 @@ test('verifying handling of multiple pages', async ({browser})=>{
     await forgotPage.waitForLoadState("domcontentloaded")
     await consentHandler.handle(forgotPage)
     
-    await forgotPage.getByLabel("Mobile number or email").fill("check")
+    await forgotPage.getByText("Mobile number or email address",{exact:true}).fill("check")
     await forgotPage.close()
 
     await facebookPage.close()
