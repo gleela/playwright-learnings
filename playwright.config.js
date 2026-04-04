@@ -41,6 +41,7 @@ export default defineConfig({
       name: 'chromium',
       use: { 
         ...devices['Desktop Chrome'], 
+        locale: 'en-GB',
        // viewport:{width:1470,height:831} ,
        screenshot: 'only-on-failure',
        video: 'off',
