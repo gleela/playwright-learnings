@@ -23,7 +23,11 @@ test('verifying handling of multiple pages', async ({browser})=>{
     await facebookPage.getByRole('link', { name: 'Forgotten password?' }).click()
 
     const newPage = await newPagePromise
-    const forgotPage = newPage && !newPage.isClosed() ? newPage: browser.contexts()[0].pages()[1]
+    
+    const pages = context.pages()
+    const activePage = pages.length ? pages[pages.length - 1] : page
+
+    const forgotPage = newPage && !newPage.isClosed() ? newPage : activePage
 
     await consentHandler.handle(forgotPage)
     
