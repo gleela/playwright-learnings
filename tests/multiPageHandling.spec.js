@@ -20,14 +20,14 @@ test('verifying handling of multiple pages', async ({browser})=>{
     const [accountCreationPage] = await Promise.all(
         [
             context.waitForEvent('page'),
-            await facebookPage.getByText('Create new account').click()
-            //await facebookPage.getByRole('button', { name: 'Create new account' }).click()
+            //await facebookPage.getByText('Create new account').click()
+            await facebookPage.getByRole('link', { name: 'Forgotten password?' }).click()
         ]
     ) 
     await accountCreationPage.waitForLoadState("domcontentloaded")
     await consentHandler.handle(accountCreationPage)
     
-    await accountCreationPage.getByLabel("First name").fill("check")
+    await accountCreationPage.getByLabel("Mobile number or email").fill("check")
     await accountCreationPage.close()
 
     await facebookPage.close()
