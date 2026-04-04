@@ -15,7 +15,7 @@ test('verifying handling of multiple pages', async ({browser})=>{
         ]
     )
     await facebookPage.waitForLoadState("domcontentloaded")
-    await consentHandler.handle(facebookPage)
+    //await consentHandler.handle(facebookPage)
     
     const [forgotPage] = await Promise.all(
         [
