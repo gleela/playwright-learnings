@@ -11,20 +11,20 @@ test('verifying handling of multiple pages', async ({browser})=>{
     const [facebookPage] = await Promise.all(
         [
             context.waitForEvent('page'),
-            await page.locator("//a[contains(@href,'facebook')]").first().click()
+            page.locator("//a[contains(@href,'facebook')]").first().click()
         ]
     )
     await facebookPage.waitForLoadState("domcontentloaded")
-    //await consentHandler.handle(facebookPage)
+    await consentHandler.handle(facebookPage)
     
     const [forgotPage] = await Promise.all(
         [
             context.waitForEvent('page'),
-            //await facebookPage.getByText('Create new account').click()
-            await facebookPage.getByRole('link', { name: 'Forgotten password?' }).click()
+            facebookPage.getByRole('link', { name: 'Forgotten password?' }).click()
         ]
     ) 
     await forgotPage.waitForLoadState("domcontentloaded")
+    await consentHandler.handle(forgotPage)
     
     await forgotPage.getByLabel("Mobile number or email").fill("check")
     await forgotPage.close()
