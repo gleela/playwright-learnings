@@ -20,7 +20,8 @@ test('verifying handling of multiple pages', async ({browser})=>{
     const [accountCreationPage] = await Promise.all(
         [
             context.waitForEvent('page'),
-            await facebookPage.getByRole('button', { name: 'Create new account' }).click()
+            await facebookPage.getByText('Create new account').click()
+            //await facebookPage.getByRole('button', { name: 'Create new account' }).click()
         ]
     ) 
     await accountCreationPage.waitForLoadState("domcontentloaded")
