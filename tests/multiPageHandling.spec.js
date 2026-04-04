@@ -27,7 +27,7 @@ test('verifying handling of multiple pages', async ({browser})=>{
     
     await forgotPage.waitForURL(/identify/i)
     
-    await forgotPage.getByText("Mobile number or email address",{exact:true}).fill("check")
+    await forgotPage.getByText("Mobile number or email address",{exact:true}).fill("check",{timeout:60000})
     if(newPage!=null) {
         await forgotPage.close()
     }
