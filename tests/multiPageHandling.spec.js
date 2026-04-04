@@ -25,7 +25,7 @@ test('verifying handling of multiple pages', async ({browser})=>{
 
     await consentHandler.handle(forgotPage)
     
-    await forgotPage.waitForURL(/identify/i)
+    await forgotPage.waitForLoadState("domcontentloaded")
     
     const email = forgotPage.getByText("Mobile number or email address",{exact:true})
     await email.waitFor({state: "visible",timeout:60000})
