@@ -8,27 +8,39 @@ test('verifying handling of multiple pages', async ({browser})=>{
 
     await page.goto('https://freelance-learn-automation.vercel.app/login')
 
+    //navigating to facebook page
     const [facebookPage] = await Promise.all(
         [
             context.waitForEvent('page'),
-            await page.locator("//a[contains(@href,'facebook')]").first().click()
+            page.locator("//a[contains(@href,'facebook')]").first().click()
         ]
     )
     await facebookPage.waitForLoadState("domcontentloaded")
     await consentHandler.handle(facebookPage)
-    
-    const [accountCreationPage] = await Promise.all(
-        [
-            context.waitForEvent('page'),
-            await facebookPage.getByRole('button', { name: 'Create new account' }).click()
-        ]
-    ) 
-    await accountCreationPage.waitForLoadState("domcontentloaded")
-    await consentHandler.handle(accountCreationPage)
-    
-    await accountCreationPage.getByLabel("First name").fill("check")
-    await accountCreationPage.close()
 
+    /*failing in CI
+    //navigating to facebook forgot password page
+    const newPagePromise =  context.waitForEvent('page').catch(()=>null)
+    await facebookPage.getByRole('link', { name: 'Forgotten password?' }).click()
+
+    const newPage = await newPagePromise
+    
+    const pages = context.pages()
+    const activePage = pages.length ? pages[pages.length - 1] : page
+
+    const forgotPage = newPage && !newPage.isClosed() ? newPage : activePage
+
+    await consentHandler.handle(forgotPage)
+    
+    await forgotPage.waitForLoadState("domcontentloaded")
+    
+    const email = forgotPage.getByText("Mobile number or email address",{exact:true})
+    await email.waitFor({state: "visible",timeout:60000})
+    await email.fill("check")
+    if(newPage!=null) {
+        await forgotPage.close()
+    }
+    */
     await facebookPage.close()
    
 

@@ -22,8 +22,10 @@ pnpm-debug.log*
 /ms-playwright/
 /playwright/.cache/
 /playwright-report/
+/allure-report/
 /blob-report/
 /test-results/
+/allure-results/
 /reports/
 
 ############################################
