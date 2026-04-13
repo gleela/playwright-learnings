@@ -5,7 +5,7 @@ test('verify selecting option in a frame', async({page})=>{
     await page.goto('https://docs.oracle.com/javase/8/docs/api/')
     const iframe3 = page.frameLocator('//frame[@name="classFrame"]')
     await consentHandler.handle(page)
-    //await iframe3.getByRole("button",{name: 'Decline all'}).click()
+
     const iframe = page.frameLocator('//frame[@name="packageListFrame"]')
     await iframe.getByText('java.applet').click()
     const iframe2 = page.frameLocator('//frame[@name="packageFrame"]')
