@@ -67,6 +67,7 @@ test("verify successful order placing",async ({page})=>{
     await page.locator("input[name='coupon']").fill("rahulshettyacademy")
     await page.getByRole("button",{name:'Apply Coupon'}).click()
     await page.getByPlaceholder("Select Country").pressSequentially('ind')
+    await expect(page.locator("section.list-group")).toBeVisible()
     await page.getByText(" India",{exact:true}).click()
 
     //navigate to order confirmation page
