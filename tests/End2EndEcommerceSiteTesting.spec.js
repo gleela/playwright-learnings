@@ -1,17 +1,17 @@
 const {test,expect} = require('@playwright/test')
-const testSet = JSON.parse(JSON.stringify(require('../test-data/testDataSecrets.json')))
+require('dotenv').config()
 
 test('verifying successful registration',{tag:'@registration'},async ({page})=>{
     
     await page.goto('https://rahulshettyacademy.com/client/#/auth/register')
     await page.getByPlaceholder('First Name').fill('check')
     await page.getByPlaceholder('Last Name').fill('check')
-    await page.locator('#userEmail').fill(testSet.email)
+    await page.locator('#userEmail').fill(process.env.email)
     await page.getByPlaceholder('enter your number').fill('3333344444')
     await page.locator('.custom-select').selectOption('Doctor')
     await page.getByRole("radio",{name:'Male', exact: true}).check()
-    await page.getByPlaceholder('Passsword', {exact: true}).fill(testSet.password)
-    await page.getByPlaceholder('Confirm Passsword').fill(testSet.password)
+    await page.getByPlaceholder('Passsword', {exact: true}).fill(process.dotenv.password)
+    await page.getByPlaceholder('Confirm Passsword').fill(process.dotenv.password)
     await page.getByRole("checkbox").check()
     await page.locator('#login').click()
 
@@ -22,8 +22,8 @@ test('verifying successful registration',{tag:'@registration'},async ({page})=>{
 test('verifying successful login',{tag:'@smoke'},async({page})=>{
     await page.goto("https://rahulshettyacademy.com/client/#/auth/login")
 
-    await page.getByPlaceholder("email@example.com").fill(testSet.email)
-    await page.getByPlaceholder("enter your passsword").fill(testSet.password)
+    await page.getByPlaceholder("email@example.com").fill(process.env.email)
+    await page.getByPlaceholder("enter your passsword").fill(process.dotenv.password)
     await page.getByRole('button', { name: 'Login' }).click()
 
     await expect(page).toHaveURL(/dashboard/)
@@ -33,8 +33,8 @@ test('verifying successful login',{tag:'@smoke'},async({page})=>{
 test("verify successful order placing",async ({page})=>{
     await page.goto("https://rahulshettyacademy.com/client/#/auth/login")
 
-    await page.getByPlaceholder("email@example.com").fill(testSet.email)
-    await page.getByPlaceholder("enter your passsword").fill(testSet.password)
+    await page.getByPlaceholder("email@example.com").fill(process.env.email)
+    await page.getByPlaceholder("enter your passsword").fill(process.env.password)
     await page.getByRole('button', { name: 'Login' }).click()
 
     await expect(page).toHaveURL(/dashboard/)
