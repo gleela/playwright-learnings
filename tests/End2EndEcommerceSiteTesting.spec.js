@@ -10,8 +10,8 @@ test('verifying successful registration',{tag:'@registration'},async ({page})=>{
     await page.getByPlaceholder('enter your number').fill('3333344444')
     await page.locator('.custom-select').selectOption('Doctor')
     await page.getByRole("radio",{name:'Male', exact: true}).check()
-    await page.getByPlaceholder('Passsword', {exact: true}).fill(process.dotenv.PASSWORD)
-    await page.getByPlaceholder('Confirm Passsword').fill(process.dotenv.PASSWORD)
+    await page.getByPlaceholder('Passsword', {exact: true}).fill(process.env.PASSWORD)
+    await page.getByPlaceholder('Confirm Passsword').fill(process.env.PASSWORD)
     await page.getByRole("checkbox").check()
     await page.locator('#login').click()
 
@@ -23,7 +23,7 @@ test('verifying successful login',{tag:'@smoke'},async({page})=>{
     await page.goto("https://rahulshettyacademy.com/client/#/auth/login")
 
     await page.getByPlaceholder("email@example.com").fill(process.env.EMAIL)
-    await page.getByPlaceholder("enter your passsword").fill(process.dotenv.PASSWORD)
+    await page.getByPlaceholder("enter your passsword").fill(process.env.PASSWORD)
     await page.getByRole('button', { name: 'Login' }).click()
 
     await expect(page).toHaveURL(/dashboard/)
