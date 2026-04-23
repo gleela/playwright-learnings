@@ -2,7 +2,7 @@
     "name":"check",
     "email":"test@t.com",
     "password":"1234",
-    "interests":["SQL","Javascript"],
+    "interests":["AWS","Javascript"],
     "gender":"Female",
     "state":"Goa",
     "hobbies":["Swimming","Playing"]
