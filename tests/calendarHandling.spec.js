@@ -13,7 +13,7 @@ test('calendar input validation', async({page})=>{
     await page.locator(".react-calendar__navigation__label").click()
     await page.locator(".react-calendar__decade-view__years button").filter({hasText:year}).click()
     await page.locator(".react-calendar__year-view__months button").nth(month-1).click()
-    await page.locator("//abbr[text()='"+date+"']").click()
+    await page.locator("abbr").filter({hasText:date}).click()
     await page.waitForLoadState('networkidle')
 
     //asserting the input value in calendar 
