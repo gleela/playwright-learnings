@@ -10,10 +10,11 @@ test('Verifying test data injection from json file', async ({page})=>{
     await page.getByPlaceholder("Email").fill(testData.email)
     await page.getByPlaceholder("Password").fill(testData.password)
 
-    for(const element of testData.interests)
+    /*for(const element of testData.interests)
         { 
             await page.getByLabel(element).check()
         }
+            */
     await page.locator("//input[@value='Female']").check()
     await page.locator("#state").selectOption(testData.state)
 
