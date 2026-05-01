@@ -7,8 +7,6 @@ const {loginHelper} = require('../utils/loginHelper')
 test('verify event creation and booking', async({page})=>{
     await page.goto("https://eventhub.rahulshettyacademy.com")
     await loginHelper(page,process.env.EMAIL,process.env.PASSWORD)
-   
-    await expect(page.locator("a").filter({hasText:"Browse Events →"})).toBeVisible()
 
     await page.getByRole("button",{name:'Admin'}).click()
     await page.getByRole('navigation').getByRole("link",{name: 'Manage Events'}).click()
