@@ -5,7 +5,7 @@ const {loginHelper} = require('../utils/loginHelper')
 
 test('verify booking refund eligibility for single ticket', async({page})=>{
     await page.goto("https://eventhub.rahulshettyacademy.com")
-    await loginHelper(page,process.env.EMAIL,process.env.PASSWORD,expect)
+    await loginHelper(page,process.env.EMAIL,process.env.PASSWORD)
 
     await page.getByRole("link",{name: 'Events',exact:true}).click()
     await expect(page.getByTestId("event-card").first()).toBeVisible()
