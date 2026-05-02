@@ -1,5 +1,18 @@
-const {test,expect} = require('@playwright/test')
+const {test,expect,request} = require('@playwright/test')
 require('dotenv').config()
+const {LoginApi} = require('../utils/LoginApi.js')
+const loginPayload = {userEmail: process.env.EMAIL, userPassword: process.env.PASSWORD}
+const orderPayload = {orders: [{country: "India", productOrderedId: "6960eac0c941646b7a8b3e68"}]}
+let token,orderId
+
+test.beforeAll(async()=>{
+
+    const apiContext = await request.newContext()
+    const loginApi = await new LoginApi(apiContext,loginPayload)
+    token = await loginApi.getToken()
+    orderId = await loginApi.getOrder(orderPayload)
+})
+
 
 test('verifying successful registration',{tag:'@registration'},async ({page})=>{
     
@@ -31,19 +44,20 @@ test('verifying successful login',{tag:'@smoke'},async({page})=>{
 })
 
 test("verify successful order placing",async ({page})=>{
-    await page.goto("https://rahulshettyacademy.com/client/#/auth/login")
 
-    await page.getByPlaceholder("email@example.com").fill(process.env.EMAIL)
-    await page.getByPlaceholder("enter your passsword").fill(process.env.PASSWORD)
-    await page.getByRole('button', { name: 'Login' }).click()
+    await page.addInitScript(value=>{
+        window.localStorage.setItem('token',value)
+    },token)
 
-    await expect(page).toHaveURL(/dashboard/)
+    await page.goto("https://rahulshettyacademy.com/client/")
+
     const cards = page.locator(".card-body")
     await expect(cards.first()).toBeVisible()
     const products = await page.locator(".card-body h5").allTextContents()
     
     const requiredProduct = 'ZARA COAT 3'
 
+    //add product to basket
     for(let i=0;i<products.length;i++){
         if(products[i]==requiredProduct){
             await cards.nth(i).getByText(' Add To Cart').click()
@@ -78,15 +92,24 @@ test("verify successful order placing",async ({page})=>{
     await expect(page.getByText(' Thankyou for the order. ')).toBeVisible()
     const orderNumber = await page.locator('.ng-star-inserted label').last().textContent()
 
+})
+
+test("Verify Order history", async({page})=>{
+
+     await page.addInitScript(value=>{
+        window.localStorage.setItem('token',value)
+    },token)
+
+    await page.goto("https://rahulshettyacademy.com/client/")
 
     //navigate to order history page
-    await page.getByText(' Orders History Page ').click()
+    await page.getByText('  ORDERS').click()
 
     await expect(page).toHaveURL(/myorders/)
     await expect(page.locator("table")).toBeVisible()
     const orderIds = await page.locator("tbody th").allTextContents()
 
-    const isFound = orderIds.some(element => orderNumber.includes(element))
+    const isFound = await orderIds.some(element => orderId.includes(element))
     expect(isFound).toBeTruthy()
 
 })
