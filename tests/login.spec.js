@@ -5,11 +5,11 @@ test("Verify successfull login and logout", async({page})=>{
     await page.getByPlaceholder("Username").pressSequentially("Admin",{delay:100});
     await page.getByPlaceholder("Password").fill("admin123");
     await page.getByRole("button", {name : 'Login'}).click();
-    await expect(page).toHaveURL(/dashboard/);
+    await expect(page,'user logged in').toHaveURL(/dashboard/);
 
     await page.getByAltText("profile picture").click();
     await page.getByText("Logout").click();
-    await expect(page).toHaveURL(/login/);
+    await expect(page, 'user logged out').toHaveURL(/login/);
 })
 
 test("Verify Login error message", async({page})=>{

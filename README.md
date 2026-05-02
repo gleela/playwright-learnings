@@ -1,13 +1,24 @@
-# My Playwright Project
-This project contains automated tests for [Name of the Application/Website].
+# Playwright JS Automation Basics
+
+This repository contains my practice work while learning Playwright for browser automation using JavaScript. It covers basic concepts like selectors, navigation, assertions, and test structure.
+
+## Tech Stack
+
+- JavaScript (Node.js)
+- Playwright
+
+## Project Structure
+playwright-basics/ 
+│── pages/ # Page Object classes (UI interactions) 
+│── tests/ # Test files 
+│── test-data/ # Test data 
+│── playwright.config.js 
+│── package.json
+
 ## Getting Started
-1. Clone the repository: `git clone https://github.com/....`
-2. Install dependencies: `npm install` (or `yarn install`)
-3. Run the tests: `npx playwright test` (or `yarn playwright test`)
-## Tests
-The tests are located in the tests folder.
-## Contributing
-[Explain how others can contribute to your project]
-## License
-[Add any license information]
+1. Clone the repository: `git clone https://github.com/gleela/playwright-learnings.git`
+2. Install dependencies: `npm install` 
+3. Run the tests: `npx playwright test` 
+
+
 
