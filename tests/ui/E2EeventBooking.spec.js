@@ -1,12 +1,12 @@
 const {test,expect} = require('@playwright/test')
-require('dotenv').config()
-const {futureDateValue} = require('../utils/FutureDateValueHelper')
-const {loginHelper} = require('../utils/loginHelper')
+const {futureDateValue} = require('../../utils/FutureDateValueHelper')
+const {loginHelper} = require('../../utils/loginHelper')
+import {loginPayload} from '../../test-data/ecommerceSiteData'
 
 
 test('verify event creation and booking', async({page})=>{
     await page.goto("https://eventhub.rahulshettyacademy.com")
-    await loginHelper(page,process.env.EMAIL,process.env.PASSWORD)
+    await loginHelper(page,loginPayload.userEmail,loginPayload.userPassword)
 
     await page.getByRole("button",{name:'Admin'}).click()
     await page.getByRole('navigation').getByRole("link",{name: 'Manage Events'}).click()
@@ -32,7 +32,7 @@ test('verify event creation and booking', async({page})=>{
 
     await expect(await page.locator(".ticket-count").innerText()).toEqual("1")
     await page.getByLabel("Full Name").fill("check")
-    await page.getByLabel("Email").fill(process.env.EMAIL)
+    await page.getByLabel("Email").fill(loginPayload.userEmail)
     await page.getByLabel("Phone Number").fill("0000000000")
     await page.getByRole("button",{name:'Confirm Booking'}).click()
 

@@ -1,5 +1,5 @@
 const {test,expect} = require('@playwright/test')
-const consentHandler = require('../utils/consentHandler')
+const consentHandler = require('../../utils/consentHandler')
 
 test('verifying handling of multiple pages', async ({browser})=>{
 

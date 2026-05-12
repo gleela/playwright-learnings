@@ -1,11 +1,11 @@
 const {test,expect} = require('@playwright/test')
-require('dotenv').config()
-const {loginHelper} = require('../utils/loginHelper')
+import { loginPayload } from '../../test-data/ecommerceSiteData'
+const {loginHelper} = require('../../utils/loginHelper')
 
 
 test('verify booking refund eligibility for single ticket', async({page})=>{
     await page.goto("https://eventhub.rahulshettyacademy.com")
-    await loginHelper(page,process.env.EMAIL,process.env.PASSWORD)
+    await loginHelper(page,loginPayload.userEmail,loginPayload.userPassword)
 
     await page.getByRole("link",{name: 'Events',exact:true}).click()
     await expect(page.getByTestId("event-card").first()).toBeVisible()
@@ -39,7 +39,7 @@ test('verify booking refund eligibility for single ticket', async({page})=>{
 
 test('verify booking refund ineligibility for group ticket', async({page})=>{
     await page.goto("https://eventhub.rahulshettyacademy.com")
-    await loginHelper(page,process.env.EMAIL,process.env.PASSWORD,expect)
+    await loginHelper(page,loginPayload.userEmail,loginPayload.userPassword)
 
     await page.getByRole("link",{name: 'Events',exact:true}).click()
     await expect(page.getByTestId("event-card").first()).toBeVisible()
@@ -48,7 +48,7 @@ test('verify booking refund ineligibility for group ticket', async({page})=>{
     await page.getByRole("button",{name:"+"}).click()
     await page.getByRole("button",{name:"+"}).click()
     await page.getByLabel("Full Name").fill("check")
-    await page.getByLabel("Email").fill(process.env.EMAIL)
+    await page.getByLabel("Email").fill(loginPayload.userEmail)
     await page.getByLabel("Phone Number").fill("0000000000")
     await page.getByRole("button",{name:'Confirm Booking'}).click()
 
