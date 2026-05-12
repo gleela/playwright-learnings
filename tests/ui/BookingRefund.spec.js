@@ -12,7 +12,7 @@ test('verify booking refund eligibility for single ticket', async({page})=>{
     await page.getByTestId("event-card").first().getByTestId("book-now-btn").click()
 
     await page.getByLabel("Full Name").fill("check")
-    await page.getByLabel("Email").fill(process.env.EMAIL)
+    await page.getByLabel("Email").fill(loginPayload.userEmail)
     await page.getByLabel("Phone Number").fill("0000000000")
     await page.getByRole("button",{name:'Confirm Booking'}).click()
 
