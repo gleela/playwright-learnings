@@ -1,5 +1,5 @@
 const {expect} = require("@playwright/test")
-class homePage{
+class HomePage{
     constructor(page){
         this.page= page
         this.manageMenu = "//span[text()='Manage']"
@@ -15,4 +15,4 @@ class homePage{
     async verifyManageCourseURL(){
         await expect(this.page).toHaveURL(/manage/)
     }
-}module.exports = homePage
+}module.exports = HomePage

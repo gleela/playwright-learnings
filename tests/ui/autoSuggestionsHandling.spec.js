@@ -1,5 +1,5 @@
 const {test,expect} = require('@playwright/test')
-const consentHandler = require('../utils/consentHandler')
+const consentHandler = require('../../utils/consentHandler')
 
 test("verifying search with auto suggestion selections",async({page})=>{
     await page.goto("https://www.google.com/")

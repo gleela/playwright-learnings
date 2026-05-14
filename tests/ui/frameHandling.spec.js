@@ -1,5 +1,5 @@
 const {test,expect} = require('@playwright/test')
-const consentHandler = require('../utils/consentHandler') 
+const consentHandler = require('../../utils/consentHandler') 
 
 test('verify selecting option in a frame', async({page})=>{
     await page.goto('https://docs.oracle.com/javase/8/docs/api/')

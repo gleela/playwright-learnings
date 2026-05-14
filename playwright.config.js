@@ -14,6 +14,7 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './tests',
+ // timeout: 100 * 1000,
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -37,6 +38,10 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    /*{
+      name: 'setup', 
+      testMatch: /.*\.setup\.js/,
+    },*/
     {
       name: 'chromium',
       use: { 
@@ -47,7 +52,7 @@ export default defineConfig({
        video: 'off',
        trace: 'on',
       },
-      
+      //dependencies: ['setup'],
     },
 
     /*{

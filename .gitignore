@@ -49,6 +49,7 @@ coverage/
 .env
 .env.*
 !.env.example
+.auth
 
 ############################################
 # ⚙️ Build / Transpilation

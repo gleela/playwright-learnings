@@ -1,5 +1,5 @@
 const {test,expect} = require('@playwright/test')
-const testData = JSON.parse(JSON.stringify(require('../test-data/multiSetTestData.json')))
+const testData = JSON.parse(JSON.stringify(require('../../test-data/multiSetTestData.json')))
 
 test.describe('Verifying data driven test handling',{tag:'@smoke'}, async ()=>{
 

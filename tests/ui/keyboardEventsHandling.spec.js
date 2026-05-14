@@ -1,5 +1,5 @@
 const {test} = require('@playwright/test')
-const consentHandler = require('../utils/consentHandler')
+const consentHandler = require('../../utils/consentHandler')
 
 test('verifying search using keyboard action',async({page})=>{
     await page.goto("https://www.google.com/")

@@ -1,5 +1,5 @@
 const {test,expect} = require('@playwright/test')
-const testData = JSON.parse(JSON.stringify(require('../test-data/testData.json')))
+const testData = JSON.parse(JSON.stringify(require('../../test-data/testData.json')))
 
 
 test('Verifying test data injection from json file', async ({page})=>{
