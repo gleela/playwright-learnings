@@ -10,9 +10,9 @@ This repository contains my practice work while learning Playwright for browser 
 ## Project Structure
 ```text
 playwright-basics/ 
-│── pages/                  # Page Object classes (UI interactions)
+│── pages/             # Page Object classes (UI interactions)
 
-│── api/                    #(api client layer) 
+│── api/               #(api client layer) 
 
 │── fixtures/ 
     │── api-fixtures 
@@ -20,11 +20,11 @@ playwright-basics/
     │── combined-fixtures 
 
 │── tests/              
-    │── api                 # api tests
-    │── ui                  # ui tests
+    │── api            # api tests
+    │── ui             # api tests
 
 │── utils/ 
-│── test-data/              # centralized test data 
+│── test-data/         # centralized test data 
 │── playwright.config.js 
 │── package.json
 ```
