@@ -33,7 +33,6 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     headless : true,
-    trace: 'on-first-retry',
   },
 
   /* Configure projects for major browsers */
@@ -50,7 +49,7 @@ export default defineConfig({
        // viewport:{width:1470,height:831} ,
        screenshot: 'only-on-failure',
        video: 'off',
-       trace: 'on',
+       trace: 'retain-on-failure'
       },
       //dependencies: ['setup'],
     },

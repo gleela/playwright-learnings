@@ -1,4 +1,4 @@
-export class OrderApi{
+class OrderApi{
     constructor(request){
         this.request = request
     }
@@ -15,4 +15,4 @@ export class OrderApi{
         const orderId = await orderResponseJson.orders[0]
         return orderId
     }
-}
+}module.exports = {OrderApi}
