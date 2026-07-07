@@ -9,7 +9,7 @@ test('verify booking refund eligibility for single ticket', async({page})=>{
 
     await page.getByRole("link",{name: 'Events',exact:true}).click()
     await expect(page.getByTestId("event-card").first()).toBeVisible()
-    await page.getByTestId("event-card").first().getByTestId("book-now-btn").click()
+    await page.getByTestId("event-card").last().getByTestId("book-now-btn").click()
 
     await page.getByLabel("Full Name").fill("check")
     await page.getByLabel("Email").fill(loginPayload.userEmail)
@@ -43,7 +43,7 @@ test('verify booking refund ineligibility for group ticket', async({page})=>{
 
     await page.getByRole("link",{name: 'Events',exact:true}).click()
     await expect(page.getByTestId("event-card").first()).toBeVisible()
-    await page.getByTestId("event-card").first().getByTestId("book-now-btn").click()
+    await page.getByTestId("event-card").last().getByTestId("book-now-btn").click()
 
     await page.getByRole("button",{name:"+"}).click()
     await page.getByRole("button",{name:"+"}).click()

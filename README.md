@@ -21,7 +21,7 @@ playwright-basics/
 
 │── tests/              
     │── api            # api tests
-    │── ui             # api tests
+    │── ui             # ui tests
 
 │── utils/ 
 │── test-data/         # centralized test data 
